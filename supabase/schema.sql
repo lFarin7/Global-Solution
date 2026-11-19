@@ -1,5 +1,5 @@
--- Rode no SQL Editor do Supabase.
--- Se você criou a versão anterior (campus), rode antes: drop table public.reports;
+-- ainda sei muito pouco de SQL, então usei um pouco de IA para explicar como fazer 
+
 create table public.reports (
   id         bigint generated always as identity primary key,
   type       text not null check (type in ('Alagamento','Deslizamento','Calor extremo','Queda de árvore','Sem energia','Outro')),
@@ -18,5 +18,5 @@ alter table public.reports enable row level security;
 create policy "reports_read"   on public.reports for select using (true);
 create policy "reports_insert" on public.reports for insert with check (true);
 
--- Habilita atualizações em tempo real.
+-- Permite atualizações em tempo real.
 alter publication supabase_realtime add table public.reports;

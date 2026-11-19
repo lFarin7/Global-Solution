@@ -4,7 +4,7 @@ import { usePlace } from "./LocationContext.jsx";
 import { NEARBY_RADIUS_KM, REPORT_TTL_HOURS } from "./config.js";
 import { boundingBox, distanceKm, roundCoord } from "./utils.js";
 
-// Guarda os relatos e entrega só os que estão perto do usuário e são recentes.
+
 const KEY = "alerta-cidadao:reports";
 const fromRow = (r) => ({ id: r.id, type: r.type, text: r.text, lat: r.lat, lon: r.lon, at: r.created_at });
 const Ctx = createContext(null);
@@ -19,13 +19,13 @@ export function ReportsProvider({ children }) {
   const [all, setAll] = useState(supabase ? [] : loadLocal);
   const [loading, setLoading] = useState(!!supabase);
 
-  // Modo local: salva no navegador.
+
   useEffect(() => {
     if (supabase) return;
     try { localStorage.setItem(KEY, JSON.stringify(all)); } catch { /* ignora */ }
   }, [all]);
 
-  // Modo compartilhado: busca relatos recentes ao redor do local e escuta novos em tempo real.
+  
   useEffect(() => {
     if (!supabase) return;
     let alive = true;
@@ -48,7 +48,7 @@ export function ReportsProvider({ children }) {
     return () => { alive = false; supabase.removeChannel(channel); };
   }, [lat, lon]);
 
-  // Filtra por raio e validade, calcula a distância e ordena do mais recente ao mais antigo.
+ 
   const reports = useMemo(() => {
     const limit = Date.now() - REPORT_TTL_HOURS * 3600 * 1000;
     return all
@@ -61,8 +61,8 @@ export function ReportsProvider({ children }) {
     const row = { type, text, lat: roundCoord(lat), lon: roundCoord(lon) };
     if (supabase) {
       const { error } = await supabase.from("reports").insert(row);
-      if (error) throw error; // a tela mostra a mensagem de erro
-      return; // o relato volta pelo canal em tempo real
+      if (error) throw error; 
+      return; 
     }
     setAll((r) => [{ id: Date.now(), ...row, at: new Date().toISOString() }, ...r]);
   };

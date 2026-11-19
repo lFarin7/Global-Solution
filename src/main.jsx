@@ -6,7 +6,7 @@ import { LocationProvider } from "./LocationContext.jsx";
 import { ReportsProvider } from "./ReportsContext.jsx";
 import "./styles.css";
 
-// A ordem importa: Reports lê a localização, então fica dentro de LocationProvider.
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HashRouter>

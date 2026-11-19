@@ -14,21 +14,24 @@ export default function Home() {
   const usingOfficial = official.length > 0;
   const alerts = usingOfficial ? official : DEMO_ALERTS;
 
-  // Compartilha "estou bem" pelo menu nativo do celular (WhatsApp, SMS...). Nada é enviado a um servidor.
+
   const shareSafe = async () => {
     const link = location.source === "gps" ? ` https://maps.google.com/?q=${location.lat},${location.lon}` : "";
     const text = `Estou em segurança. Local: ${location.label}.${link}`;
     try {
       if (navigator.share) await navigator.share({ text });
       else {
+
         await navigator.clipboard.writeText(text);
         setMsg("Mensagem copiada. Cole no WhatsApp ou SMS.");
+
       }
-    } catch { /* o usuário cancelou */ }
-  };
+    } catch {}
+  }
 
   return (
     <>
+
       <h1>Alerta Cidadão</h1>
       <p className="muted">Clima e emergências na sua região.</p>
       <div className="mt8" />
@@ -37,11 +40,13 @@ export default function Home() {
       {!status && loading && <div className="status skeleton" aria-busy="true">Carregando previsão…</div>}
 
       {!status && !loading && (
+
         <div className="status" role="alert">
           <b>Previsão indisponível</b>
           <p>{error || "Tente novamente em instantes."}</p>
           <button className="ghost mt8" onClick={reload}>Tentar de novo</button>
         </div>
+
       )}
 
       {status && (
@@ -58,7 +63,7 @@ export default function Home() {
 
       <h2>Avisos para a região</h2>
       {!loadingAlerts && !usingOfficial && (
-        <p className="muted mt8">Alertas oficiais não configurados. Exibindo exemplos de demonstração.</p>
+        <p className="muted mt8">Alertas exibidos como exemplos de demonstração.</p>
       )}
       <div className="mt8" />
       {alerts.map((a) => (

@@ -17,8 +17,7 @@ export default function Contacts() {
           </a>
         </div>
       ))}
-      <h2>Dica</h2>
-      <p className="muted">No celular, abra o site no navegador e escolha “Adicionar à tela inicial” para usar como app.</p>
+    
     </>
   );
 }

@@ -1,5 +1,4 @@
-// Função serverless (Vercel). Roda no servidor, então a chave nunca chega ao navegador.
-// Configure a variável GOOGLE_WEATHER_KEY no painel da Vercel.
+
 export default async function handler(req, res) {
   const lat = Number(req.query.lat);
   const lon = Number(req.query.lon);
@@ -18,7 +17,7 @@ export default async function handler(req, res) {
   try {
     const r = await fetch(url);
     const body = await r.json();
-    // Cache de 5 min: reduz custo e protege a cota quando muitos alunos abrem o app.
+    // Cache de 5 min: reduz custo e protege a cota quando muitos tentarem abrir o app pra testar.
     res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
     return res.status(r.ok ? 200 : r.status).json(body);
   } catch {

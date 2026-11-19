@@ -6,7 +6,7 @@ import Nearby from "./pages/Nearby.jsx";
 import Guide from "./pages/Guide.jsx";
 import Contacts from "./pages/Contacts.jsx";
 
-// Para criar uma página nova: crie o arquivo em src/pages, adicione uma <Route> aqui e uma aba em TabBar.jsx.
+
 export default function App() {
   return (
     <>

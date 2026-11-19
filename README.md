@@ -2,22 +2,6 @@
 
 Aplicativo pensado em cima das mudanças climaticas que estão ocorrendo decorrente a vinda do el nino, script foi corrigido pelo claude 5.5 da anthropic, feito em cima de React + Vite + React Router, APIS usadas foram Open-Meteo Forecast, Open-Meteo Geocoding e Google Weather API alem de tambem supabase. O usuário escolhe uma cidade ou usa o GPS, e tudo (previsão, alertas, relatos) segue esse local.
 
-## Rodar
-
-```bash
-npm install
-npm run dev
-```
-
-Sem configurar nada já funciona: previsão real (Open-Meteo), busca de cidades, alertas de exemplo e relatos salvos no navegador.
-
-## Ligar cada recurso
-
-| Recurso | O que fazer | Sem isso |
-|---|---|---|
-| Previsão e busca de cidade | Nada. Ajuste limites em `src/config.js`. | - |
-| Relatos compartilhados | Crie projeto no Supabase, rode `supabase/schema.sql`, copie `.env.example` para `.env` e preencha. | Relatos só no navegador |
-| Alertas oficiais | Chave da Weather API do Google, deploy na Vercel, variável `GOOGLE_WEATHER_KEY`. Local: `vercel dev`. | Alertas de exemplo |
 
 ## Mapa dos arquivos
 

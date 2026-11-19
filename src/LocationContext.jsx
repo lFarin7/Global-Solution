@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useState } from "react";
 import { DEFAULT_LOCATION } from "./config.js";
 import { roundCoord } from "./utils.js";
 
-// Guarda "onde o usuário está" (GPS ou cidade escolhida). Todo o app lê daqui.
+
 const KEY = "alerta-cidadao:location";
 const Ctx = createContext(null);
 
@@ -10,7 +10,7 @@ function load() {
   try {
     const r = JSON.parse(localStorage.getItem(KEY));
     if (r && Number.isFinite(r.lat) && Number.isFinite(r.lon)) return r;
-  } catch { /* usa o padrão */ }
+  } catch {}
   return DEFAULT_LOCATION;
 }
 
